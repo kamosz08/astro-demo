@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { TodoList } from "../components/react/ToDoList";
+---
+
+<Layout title="React example">
+  <main>
+    <a href="/">
+      <div class="text-blue-500 p-4 border-solid border-2 my-12">
+        Go back
+      </div></a
+    >
+    <div class="text-emerald-500 text-center mb-12">
+      React example, this is static SSG text
+    </div>
+    <TodoList client:load />
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+  }
+</style>
