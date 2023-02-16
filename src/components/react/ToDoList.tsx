@@ -1,8 +1,15 @@
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, useEffect, useRef, useState } from "react";
 import { todos as initialTodos } from "../../todos";
 
 export const TodoList = () => {
   const [todos, setTodos] = useState(initialTodos);
+  const renderCountRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    renderCountRef.current!.innerText = (
+      Number(renderCountRef.current!.innerText) + 1
+    ).toString();
+  });
 
   const addToDo: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -25,6 +32,9 @@ export const TodoList = () => {
   return (
     <div>
       <p className="text-center">This is SSR with js shipped to client</p>
+      <div className="flex">
+        Render count: <p ref={renderCountRef}>0</p>
+      </div>
       <div className="container max-w-screen-md m-auto p-8 bg-white rounded-xl">
         <h1 className="text-6xl font-black tracking-tighter lowercase">
           To-Do List
